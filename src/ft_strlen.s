@@ -1,20 +1,19 @@
 section .text
-    global ft_strlen
+        global ft_strlen
 
 ft_strlen:
-    push rbp
-    mov rbp, rsp
-    xor rax, rax
+        push rbp
+        mov rbp, rsp
+        xor rax, rax
 
-    .loop:
-        cmp byte [rdi], 0
-        je .exit
+        .loop:
+                cmp byte [rdi + rax], 0
+                je .exit
 
-        inc rax
-        inc rdi
-        jmp .loop
+                inc rax
+                jmp .loop
 
-    .exit:
-        mov rsp, rbp
-        pop rbp
-        ret
+        .exit:
+                mov rsp, rbp
+                pop rbp
+                ret

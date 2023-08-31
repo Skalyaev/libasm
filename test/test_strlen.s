@@ -1,44 +1,44 @@
 section .data
-    level1 db NL, 'Level 1 - strlen(<string>): Calculates the length of <string>', NL, 0
-    level1_len equ $ - level1
-    level1_input1 db '<string>: ', 0
-    level1_input1_len equ $ - level1_input1
-    format_strlen db '--> strlen: %d', NL, 0
-    format_ft_strlen db '--> ft_strlen: %d', NL, 0
+        level1 db NL, 'Level 1 - strlen(<string>): Calculates the length of <string>', NL, 0
+        level1_len equ $ - level1
+        level1_input1 db '<string>: ', 0
+        level1_input1_len equ $ - level1_input1
+        format_strlen db '--> strlen: %d', NL, 0
+        format_ft_strlen db '--> ft_strlen: %d', NL, 0
 
 section .text
-    global test_strlen
-    extern strlen, ft_strlen
+        global test_strlen
+        extern strlen, ft_strlen
 
 test_strlen:
-    ENTER_PLS
-    WRITE level1, level1_len
-    RET_TEST
-
-    .loop:
-        WRITE level1_input1, level1_input1_len
-        RET_TEST
-        READ buffer1, BUFFER_SIZE - 1
-        RET_TEST
-        mov rbx, rax
-
-        lea rdi, [buffer1]
-        call ft_strlen
-        PRINTF format_ft_strlen, rax
+        ENTER_PLS
+        WRITE level1, level1_len
         RET_TEST
 
-        lea rdi, [buffer1]
-        call strlen
-        PRINTF format_strlen, rax
-        RET_TEST
+        .loop:
+                WRITE level1_input1, level1_input1_len
+                RET_TEST
+                READ buffer1, BUFFER_SIZE - 1
+                RET_TEST
+                mov rbx, rax
 
-        test rbx, rbx
-        jz .exit
+                lea rdi, [buffer1]
+                call ft_strlen
+                PRINTF format_ft_strlen, rax
+                RET_TEST
 
-        BZERO buffer1, rbx
-        TCFLUSH
-        jmp .loop
+                lea rdi, [buffer1]
+                call strlen
+                PRINTF format_strlen, rax
+                RET_TEST
 
-    .exit:
-        LEAVE_PLS
-        ret
+                test rbx, rbx
+                jz .exit
+
+                BZERO buffer1, rbx
+                TCFLUSH
+                jmp .loop
+
+        .exit:
+                LEAVE_PLS
+                ret
