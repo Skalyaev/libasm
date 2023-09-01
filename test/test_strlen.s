@@ -3,6 +3,7 @@ section .data
         level1_len equ $ - level1
         level1_input1 db '<string>: ', 0
         level1_input1_len equ $ - level1_input1
+
         format_strlen db '--> strlen: %d', NL, 0
         format_ft_strlen db '--> ft_strlen: %d', NL, 0
 
@@ -11,24 +12,29 @@ section .text
         extern strlen, ft_strlen
 
 test_strlen:
-        ENTER_PLS
+        FT_ENTER
+
         WRITE level1, level1_len
         RET_TEST
 
         .loop:
                 WRITE level1_input1, level1_input1_len
                 RET_TEST
+
                 READ buffer1, BUFFER_SIZE - 1
                 RET_TEST
                 mov rbx, rax
+                TCFLUSH
 
                 lea rdi, [buffer1]
                 call ft_strlen
+
                 PRINTF format_ft_strlen, rax
                 RET_TEST
 
                 lea rdi, [buffer1]
                 call strlen
+
                 PRINTF format_strlen, rax
                 RET_TEST
 
@@ -36,9 +42,8 @@ test_strlen:
                 jz .exit
 
                 BZERO buffer1, rbx
-                TCFLUSH
                 jmp .loop
 
         .exit:
-                LEAVE_PLS
+                FT_LEAVE
                 ret

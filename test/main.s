@@ -22,48 +22,50 @@ section .data
 
 section .text
         global _start
-        extern printf
+
         extern tcflush
+        extern printf
+        extern atoi
         extern free
-        extern __errno_location, perror
+        extern perror
+        extern __errno_location
 
 _start:
         and rsp, 0xFFFFFFFFFFFFFFF0
+
         WRITE welcome, welcome_len
         test rax, rax
         js .exit_failure
 
-        ;call test_strlen
-        ;test rax, rax
-        ;js .exit_failure
+        call test_strlen
+        test rax, rax
+        js .exit_failure
 
-        ;call test_strcpy
-        ;test rax, rax
-        ;js .exit_failure
+        call test_strcpy
+        test rax, rax
+        js .exit_failure
 
-        ;call test_strcmp
-        ;test rax, rax
-        ;js .exit_failure
+        call test_strcmp
+        test rax, rax
+        js .exit_failure
 
-        ;call test_write
-        ;test rax, rax
-        ;js .exit_failure
+        call test_write
+        test rax, rax
+        js .exit_failure
 
-        ;call test_read
-        ;test rax, rax
-        ;js .exit_failure
+        call test_read
+        test rax, rax
+        js .exit_failure
 
         call test_strdup
         test rax, rax
         js .exit_failure
 
         .exit:
-                mov rbx, rax
                 WRITE goodbye, goodbye_len
                 test rax, rax
                 js .exit_failure
 
-                mov rax, rbx
                 EXIT_SUCCESS
 
         .exit_failure:
@@ -76,5 +78,4 @@ _start:
                 call perror
                 WRITE goodbye, goodbye_len
 
-                mov rax, -1
-                EXIT_FAILURE
+                EXIT_FAILURE -1

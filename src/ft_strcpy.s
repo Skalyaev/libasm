@@ -4,30 +4,23 @@ section .text
 ft_strcpy:
         push rbp
         mov rbp, rsp
-        push rbx
+
         mov rax, rdi
 
         .loop:
                 cmp byte [rsi], 0
-                je .fill
-
-                mov bl, [rsi]
-                mov [rdi], bl
-
-                inc rdi
-                inc rsi
-                jmp .loop
-
-        .fill:
-                cmp byte [rdi], 0
                 je .exit
 
-                mov byte [rdi], 0
+                mov r8b, [rsi]
+                mov [rdi], r8b
+
+                inc rsi
                 inc rdi
-                jmp .fill
+                jmp .loop
 
         .exit:
-                pop rbx
+                mov byte [rdi], 0
+
                 mov rsp, rbp
                 pop rbp
                 ret

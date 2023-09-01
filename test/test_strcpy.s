@@ -5,6 +5,7 @@ section .data
         level2_input1_len equ $ - level2_input1
         level2_input2 db '<src>: ', 0
         level2_input2_len equ $ - level2_input2
+
         format_strcpy db '--> strcpy: %s', NL, 0
         format_ft_strcpy db '--> ft_strcpy: %s', NL, 0
 
@@ -13,13 +14,15 @@ section .text
         extern strcpy, ft_strcpy
 
 test_strcpy:
-        ENTER_PLS
+        FT_ENTER
+
         WRITE level2, level2_len
         RET_TEST
 
         .loop:
                 WRITE level2_input1, level2_input1_len
                 RET_TEST
+
                 READ buffer1, BUFFER_SIZE - 1
                 RET_TEST
                 mov r12, rax
@@ -27,6 +30,7 @@ test_strcpy:
 
                 WRITE level2_input2, level2_input2_len
                 RET_TEST
+
                 READ buffer2, BUFFER_SIZE - 1
                 RET_TEST
                 mov r13, rax
@@ -41,6 +45,7 @@ test_strcpy:
                 inc rcx
                 test al, al
                 jnz .push_first_buffer
+
                 mov r14, rsp
 
                 sub rsp, BUFFER_SIZE
@@ -52,18 +57,21 @@ test_strcpy:
                 inc rcx
                 test al, al
                 jnz .push_second_buffer
+
                 mov r15, rsp
 
         .run_strcpy:
                 mov rdi, r14
                 mov rsi, r15
                 call ft_strcpy
+
                 PRINTF format_ft_strcpy, rax
                 RET_TEST
 
                 lea rdi, [buffer1]
                 lea rsi, [buffer2]
                 call strcpy
+
                 PRINTF format_strcpy, rax
                 RET_TEST
 
@@ -71,17 +79,15 @@ test_strcpy:
                 add rsp, BUFFER_SIZE
 
                 test r12, r12
-                jz .first_is_empty
-
-        .new_loop:
-                BZERO buffer1, BUFFER_SIZE
-                BZERO buffer2, r13
-                jmp .loop
-
-        .first_is_empty:
+                jnz .new_loop
                 test r13, r13
                 jnz .new_loop
 
         .exit:
-                LEAVE_PLS
+                FT_LEAVE
                 ret
+
+        .new_loop:
+                BZERO buffer1, r12
+                BZERO buffer2, r13
+                jmp .loop

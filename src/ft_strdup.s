@@ -1,65 +1,49 @@
 section .text
         global ft_strdup
+
         extern malloc
-        extern __errno_location
 
 ft_strdup:
         push rbp
         mov rbp, rsp
+        sub rsp, 0x8
         push rbx
-        push rcx
-        push r12
 
-        xor rcx, rcx
+        mov rbx, rdi
+        xor rax, rax
+        mov rcx, 1
 
         .count:
-                cmp byte [rdi + rcx], 0
+                cmp byte [rdi], 0
                 je .alloc
 
+                inc rdi
                 inc rcx
                 jmp .count
 
         .alloc:
-                test rcx, rcx
-                jz .exit
-
-                mov rbx, rdi
-                inc rcx
-
                 mov rdi, rcx
                 call malloc
                 test rax, rax
-                jz .set_errno
+                jz .exit
 
                 xor rcx, rcx
 
         .copy:
                 cmp byte [rbx + rcx], 0
-                je .put_last_zero
+                je .null_terminate
 
-                mov r12, [rbx + rcx]
-                mov [rax + rcx], r12
+                mov r8, [rbx + rcx]
+                mov [rax + rcx], r8
 
                 inc rcx
                 jmp .copy
 
-        .put_last_zero:
-                mov r12, [rbx + rcx]
-                mov [rax + rcx], r12
+        .null_terminate:
+                mov byte [rax + rcx], 0
 
         .exit:
-                pop r12
-                pop rcx
                 pop rbx
                 mov rsp, rbp
                 pop rbp
                 ret
-
-        .set_errno:
-                neg rax
-                mov rbx, rax
-                call __errno_location
-                mov [rax], rbx
-
-                xor rax, rax
-                jmp .exit

@@ -4,13 +4,12 @@ section .text
 ft_strcmp:
         push rbp
         mov rbp, rsp
-        push rbx
 
         .loop:
                 movzx rax, byte [rdi]
-                movzx rbx, byte [rsi]
+                movzx r8, byte [rsi]
 
-                cmp rax, rbx
+                cmp rax, r8
                 jne .exit
 
                 test rax, rax
@@ -21,8 +20,8 @@ ft_strcmp:
                 jmp .loop
 
         .exit:
-                sub rax, rbx
-                pop rbx
+                sub rax, r8
+
                 mov rsp, rbp
                 pop rbp
                 ret

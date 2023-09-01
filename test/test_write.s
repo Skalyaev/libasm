@@ -7,8 +7,10 @@ section .data
         level4_input2_len equ $ - level4_input2
         level4_input3 db '<count>: ', 0
         level4_input3_len equ $ - level4_input3
+
         format_write db '--> write: %d', NL, 0
         format_ft_write db '--> ft_write: %d', NL, 0
+
         write_errno db '--> write', 0
         ft_write_errno db '--> ft_write', 0
 
@@ -17,13 +19,15 @@ section .text
         extern write, ft_write
 
 test_write:
-        ENTER_PLS
+        FT_ENTER
+
         WRITE level4, level4_len
         RET_TEST
 
         .loop:
                 WRITE level4_input1, level4_input1_len
                 RET_TEST
+
                 READ buffer1, BUFFER_SIZE - 1
                 RET_TEST
                 mov r12, rax
@@ -31,6 +35,7 @@ test_write:
 
                 WRITE level4_input2, level4_input2_len
                 RET_TEST
+
                 READ buffer2, BUFFER_SIZE - 1
                 RET_TEST
                 mov r13, rax
@@ -38,6 +43,7 @@ test_write:
 
                 WRITE level4_input3, level4_input3_len
                 RET_TEST
+
                 READ buffer3, BUFFER_SIZE - 1
                 RET_TEST
                 mov r14, rax
@@ -45,17 +51,19 @@ test_write:
 
         .do_ft_write:
                 ATOI buffer3
-                mov r15, rax
+                mov rbx, rax
+
                 ATOI buffer1
                 mov rdi, rax
                 lea rsi, [buffer2]
-                mov rdx, r15
+                mov rdx, rbx
                 call ft_write
-                mov r15, rax
-                PRINTF format_ft_write, rax
+                mov rbx, rax
+
+                PRINTF format_ft_write, rbx
                 RET_TEST
                 
-                test r15, r15
+                test rbx, rbx
                 jns .do_write
 
                 mov rdi, ft_write_errno
@@ -63,17 +71,19 @@ test_write:
 
         .do_write:
                 ATOI buffer3
-                mov r15, rax
+                mov rbx, rax
+
                 ATOI buffer1
                 mov rdi, rax
                 lea rsi, [buffer2]
-                mov rdx, r15
+                mov rdx, rbx
                 call write
-                mov r15, rax
-                PRINTF format_write, rax
+                mov rbx, rax
+
+                PRINTF format_write, rbx
                 RET_TEST
                 
-                test r15, r15
+                test rbx, rbx
                 jns .end_check
 
                 mov rdi, write_errno
@@ -81,20 +91,18 @@ test_write:
 
         .end_check:
                 test r12, r12
-                jz .first_is_empty
-
-        .new_loop:
-                BZERO buffer1, r12
-                BZERO buffer2, r13
-                BZERO buffer3, r14
-                jmp .loop
-
-        .first_is_empty:
+                jnz .new_loop
                 test r13, r13
                 jnz .new_loop
                 test r14, r14
                 jnz .new_loop
 
         .exit:
-                LEAVE_PLS
+                FT_LEAVE
                 ret
+
+        .new_loop:
+                BZERO buffer1, r12
+                BZERO buffer2, r13
+                BZERO buffer3, r14
+                jmp .loop

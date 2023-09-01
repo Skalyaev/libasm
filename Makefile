@@ -34,15 +34,15 @@ $(OBJ_DIR)/%.o	: $(SRC_DIR)/%.$(SRC_EXT)
 		@$(NASM) $(NASM_FLAGS) $< -o $@
 
 test		:
-		$(NASM) $(NASM_FLAGS) test/main.s -o main.o
-		$(LD) main.o -o tester $(LD_FLAGS)
+		$(NASM) $(NASM_FLAGS) test/main.s -o tester.o
+		$(LD) tester.o -o tester $(LD_FLAGS)
 
 clean		:
-		rm -rf $(OBJ_DIR) main.o
+		rm -rf $(OBJ_DIR) tester.o
 
 fclean		: clean
 		rm -f $(NAME) tester
 
 re		: fclean all
 
-.PHONY		: all test clean fclean re
+.PHONY		: all clean fclean re test

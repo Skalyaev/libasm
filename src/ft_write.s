@@ -1,5 +1,6 @@
 section .text
         global ft_write
+
         extern __errno_location
 
 ft_write:
@@ -18,9 +19,11 @@ ft_write:
 
         .set_errno:
                 neg rax
+                push rbx
                 mov rbx, rax
                 call __errno_location
                 mov [rax], rbx
 
+                pop rbx
                 mov rax, -1
                 jmp .exit

@@ -5,10 +5,12 @@ section .data
         level5_input1_len equ $ - level5_input1
         level5_input2 db '<count>: ', 0
         level5_input2_len equ $ - level5_input2
+
         format_read db '--> read: %d', NL, 0
         format_ft_read db '--> ft_read: %d', NL, 0
         format_read_buffer db '--> read_buffer: %s', NL, 0
         format_ft_read_buffer db '--> ft_read_buffer: %s', NL, 0
+
         read_errno db '--> read', 0
         ft_read_errno db '--> ft_read', 0
 
@@ -17,13 +19,15 @@ section .text
         extern read, ft_read
 
 test_read:
-        ENTER_PLS
+        FT_ENTER
+
         WRITE level5, level5_len
         RET_TEST
 
         .loop:
                 WRITE level5_input1, level5_input1_len
                 RET_TEST
+
                 READ buffer1, BUFFER_SIZE - 1
                 RET_TEST
                 mov r12, rax
@@ -31,6 +35,7 @@ test_read:
 
                 WRITE level5_input2, level5_input2_len
                 RET_TEST
+
                 READ buffer2, BUFFER_SIZE - 1
                 RET_TEST
                 mov r13, rax
@@ -38,21 +43,24 @@ test_read:
 
         .do_ft_read:
                 ATOI buffer2
-                mov r15, rax
+                mov rbx, rax
+
                 ATOI buffer1
                 mov rdi, rax
                 lea rsi, [buffer3]
-                mov rdx, r15
+                mov rdx, rbx
                 call ft_read
-                mov r15, rax
-                PRINTF format_ft_read, rax
+                mov rbx, rax
+
+                PRINTF format_ft_read, rbx
                 RET_TEST
+
                 PRINTF format_ft_read_buffer, buffer3
                 RET_TEST
+
                 BZERO buffer3, BUFFER_SIZE
-                TCFLUSH
             
-                test r15, r15
+                test rbx, rbx
                 jns .do_read
 
                 mov rdi, ft_read_errno
@@ -60,21 +68,24 @@ test_read:
 
         .do_read:
                 ATOI buffer2
-                mov r15, rax
+                mov rbx, rax
+ 
                 ATOI buffer1
                 mov rdi, rax
                 lea rsi, [buffer3]
-                mov rdx, r15
+                mov rdx, rbx
                 call read
-                mov r15, rax
+                mov rbx, rax
+
                 PRINTF format_read, rax
                 RET_TEST
+
                 PRINTF format_read_buffer, buffer3
                 RET_TEST
+
                 BZERO buffer3, BUFFER_SIZE
-                TCFLUSH
             
-                test r15, r15
+                test rbx, rbx
                 jns .end_check
 
                 mov rdi, read_errno
@@ -82,19 +93,15 @@ test_read:
 
         .end_check:
                 test r12, r12
-                jz .first_is_empty
+                jnz .new_loop
+                test r13, r13
+                jnz .new_loop
+
+        .exit:
+                FT_LEAVE
+                ret
 
         .new_loop:
                 BZERO buffer1, r12
                 BZERO buffer2, r13
                 jmp .loop
-
-        .first_is_empty:
-                test r13, r13
-                jnz .new_loop
-                test r14, r14
-                jnz .new_loop
-
-        .exit:
-                LEAVE_PLS
-                ret
