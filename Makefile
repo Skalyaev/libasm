@@ -1,4 +1,5 @@
 NAME		= libasm.a
+TESTER_NAME	= tester
 
 AR		= ar
 AR_FLAGS	= rcs
@@ -9,40 +10,44 @@ NASM_FLAGS	= -f elf64
 LD		= ld
 LD_FLAGS	= -L. -lasm -lc -dynamic-linker /lib64/ld-linux-x86-64.so.2
 
-SRC_DIR		= src
+BONUS_DIR	= .
+
+SRC_DIR		= $(BONUS_DIR)/src
 SRC_EXT		= s
 SRC_FILES	= $(wildcard $(SRC_DIR)/*.$(SRC_EXT))
-SRC_COUNT	= $(shell find $(SRC_DIR) -type f -name "*.$(SRC_EXT)" | wc -l)
 
-OBJ_DIR		= obj
+OBJ_DIR		= $(BONUS_DIR)/obj
 OBJ_FILES	= $(patsubst $(SRC_DIR)/%.$(SRC_EXT), $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 all		: $(NAME)
 
-ifeq ($(SRC_COUNT), 6)
 $(NAME)		: $(OBJ_DIR) $(OBJ_FILES)
 		$(AR) $(AR_FLAGS) $@ $(OBJ_FILES)
-else
-$(NAME)		:
-		@echo "Srcs corrupted, aborting"
-endif
+		$(MAKE) $(TESTER_NAME)
 
 $(OBJ_DIR)	:
 		@mkdir $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o	: $(SRC_DIR)/%.$(SRC_EXT)
-		@$(NASM) $(NASM_FLAGS) $< -o $@
+		$(NASM) $(NASM_FLAGS) $< -o $@
 
-test		:
-		$(NASM) $(NASM_FLAGS) test/main.s -o tester.o
-		$(LD) tester.o -o tester $(LD_FLAGS)
+$(TESTER_NAME)	:
+		$(NASM) $(NASM_FLAGS) $(BONUS_DIR)/test/main.s -o $(TESTER_NAME).o
+		$(LD) $(TESTER_NAME).o -o $(TESTER_NAME) $(LD_FLAGS)
+		@rm $(TESTER_NAME).o
+		@echo
+		@echo "Done, you can now launch ./$(TESTER_NAME)"
+		@echo
 
 clean		:
-		rm -rf $(OBJ_DIR) tester.o
+		rm -rf $(OBJ_DIR) bonus/$(OBJ_DIR)
 
 fclean		: clean
-		rm -f $(NAME) tester
+		rm -f $(NAME) $(TESTER_NAME)
 
 re		: fclean all
 
-.PHONY		: all clean fclean re test
+bonus		:
+		$(MAKE) BONUS_DIR=bonus
+
+.PHONY		: all clean fclean re bonus
