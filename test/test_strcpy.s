@@ -19,6 +19,22 @@ test_strcpy:
         WRITE level2, level2_len
         RET_TEST
 
+        ;---> strcpy() actually SEGVs when passed NULL 
+        ;WRITE null_test_msg, null_test_msg_len
+        ;RET_TEST
+
+        ;mov rdi, 0x0
+        ;mov rsi, 0x0
+        ;call ft_strcpy
+        ;PRINTF format_ft_strcpy, rax
+        ;RET_TEST
+
+        ;mov rdi, 0x0
+        ;lea rsi, [level2_input1]
+        ;call strcpy
+        ;PRINTF format_strcpy, rax
+        ;RET_TEST
+
         .loop:
                 WRITE level2_input1, level2_input1_len
                 RET_TEST

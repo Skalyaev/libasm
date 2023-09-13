@@ -17,6 +17,20 @@ test_strlen:
         WRITE level1, level1_len
         RET_TEST
 
+        ;---> strlen() actually SEGVs when passed NULL 
+        ;WRITE null_test_msg, null_test_msg_len
+        ;RET_TEST
+
+        ;mov rdi, 0x0
+        ;call ft_strlen
+        ;PRINTF format_ft_strlen, rax
+        ;RET_TEST
+
+        ;mov rdi, 0x0
+        ;call strlen
+        ;PRINTF format_strlen, rax
+        ;RET_TEST
+
         .loop:
                 WRITE level1_input1, level1_input1_len
                 RET_TEST

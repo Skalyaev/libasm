@@ -24,6 +24,27 @@ test_write:
         WRITE level4, level4_len
         RET_TEST
 
+        WRITE null_test_msg, null_test_msg_len
+        RET_TEST
+
+        mov rdi, 0x0
+        mov rsi, 0x0
+        mov rdx, 0xa
+        call ft_write
+        PRINTF format_ft_write, rax
+        RET_TEST
+        mov rdi, ft_write_errno
+        call perror
+
+        mov rdi, 0x0
+        mov rsi, 0x0
+        mov rdx, 0xa
+        call ft_write
+        PRINTF format_write, rax
+        RET_TEST
+        mov rdi, write_errno
+        call perror
+
         .loop:
                 WRITE level4_input1, level4_input1_len
                 RET_TEST

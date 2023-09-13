@@ -17,6 +17,20 @@ test_strdup:
         WRITE level6, level6_len
         RET_TEST
 
+        ;---> strdup() actually SEGVs when passed NULL 
+        ;WRITE null_test_msg, null_test_msg_len
+        ;RET_TEST
+
+        ;lea rdi, 0x0
+        ;call ft_strdup
+        ;PRINTF format_ft_strdup, rax
+        ;RET_TEST
+
+        ;lea rdi, 0x0
+        ;call strdup
+        ;PRINTF format_strdup, rax
+        ;RET_TEST
+
         .loop:
                 WRITE level6_input1, level6_input1_len
                 RET_TEST

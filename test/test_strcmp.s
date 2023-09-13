@@ -19,6 +19,22 @@ test_strcmp:
         WRITE level3, level3_len
         RET_TEST
 
+        ;---> strcmp() actually SEGVs when passed NULL 
+        ;WRITE null_test_msg, null_test_msg_len
+        ;RET_TEST
+
+        ;mov rdi, 0x0
+        ;mov rsi, 0x0
+        ;call ft_strcmp
+        ;PRINTF format_ft_strcmp, rax
+        ;RET_TEST
+
+        ;mov rdi, 0x0
+        ;mov rsi, 0x0
+        ;call strcmp
+        ;PRINTF format_strcmp, rax
+        ;RET_TEST
+
         .loop:
                 WRITE level3_input1, level3_input1_len
                 RET_TEST

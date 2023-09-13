@@ -24,6 +24,27 @@ test_read:
         WRITE level5, level5_len
         RET_TEST
 
+        WRITE null_test_msg, null_test_msg_len
+        RET_TEST
+
+        mov rdi, 0x0
+        mov rsi, 0x0
+        mov rdx, 0xa
+        call ft_read
+        PRINTF format_ft_read, rax
+        RET_TEST
+        mov rdi, ft_read_errno
+        call perror
+
+        mov rdi, 0x0
+        mov rsi, 0x0
+        mov rdx, 0xa
+        call ft_read
+        PRINTF format_read, rax
+        RET_TEST
+        mov rdi, read_errno
+        call perror
+
         .loop:
                 WRITE level5_input1, level5_input1_len
                 RET_TEST

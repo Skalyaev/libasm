@@ -14,8 +14,8 @@ ft_atoi_base:
         call check_base
         test rax, rax
         jz .exit_failure
-        cmp byte rax, 0x1
-        jz .exit_failure
+        cmp rax, 0x1
+        je .exit_failure
 
         mov r8, rax
         xor rax, rax
@@ -35,7 +35,7 @@ ft_atoi_base:
                 je .is_whitespace
 
                 jmp .through_signs
-        
+
         .is_whitespace:
                 inc rdi
                 jmp .through_whitespaces
@@ -81,7 +81,7 @@ ft_atoi_base:
                 mov rsp, rbp
                 pop rbp
                 ret
-        
+
         .exit_failure:
                 mov rdi, 1
                 lea rsi, [error_msg]
@@ -119,18 +119,21 @@ check_base:
                 je .exit_failure
 
                 xor r8, r8
-        
-        .check-duplicates:
+
+        .check_duplicates:
                 mov r10b, [rsi + r8]
-                
+
                 test r10b, r10b
                 jz .new_loop
-                
+
+                cmp r8, rcx
+                je .new_loop
+
                 cmp r9b, r10b
                 je .exit_failure
-                
+
                 inc r8
-                jmp .check-duplicates
+                jmp .check_duplicates
 
         .new_loop:
                 inc rcx
