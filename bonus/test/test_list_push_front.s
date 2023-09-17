@@ -7,6 +7,9 @@ section .data
         level2_msg1 db 'List content:', NL, 0
         level2_msg1_len equ $ - level2_msg1
 
+        test_done_msg db 'Done!', NL, 0
+        test_done_msg_len equ $ - test_done_msg
+
         format_list_push_front db '%s', 0
 
 section .text
@@ -18,6 +21,15 @@ test_list_push_front:
         FT_ENTER
 
         WRITE level2, level2_len
+        RET_TEST
+
+        WRITE null_test_msg, null_test_msg_len
+        RET_TEST
+
+        lea rdi, 0x0
+        lea rsi, 0x0
+        call ft_list_push_front
+        WRITE test_done_msg, test_done_msg_len
         RET_TEST
 
         xor r12, r12

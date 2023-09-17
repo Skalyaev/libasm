@@ -1,6 +1,8 @@
 section .data
-        error_msg db "ft_atoi_base(): invalid base", 0xa, 0
-        error_msg_len equ $ - error_msg
+        error_base_msg db "ft_atoi_base(): invalid base", 0xa, 0
+        error_base_msg_len equ $ - error_base_msg
+        error_input_msg db "ft_atoi_base(): invalid input", 0xa, 0
+        error_input_msg_len equ $ - error_input_msg
 
 section .text
         global ft_atoi_base
@@ -9,16 +11,20 @@ ft_atoi_base:
         push rbp
         mov rbp, rsp
 
-        mov rdx, 0x1
+        test rdi, rdi
+        jz .invalid_input
+        test rsi, rsi
+        jz .invalid_input
 
         call check_base
         test rax, rax
-        jz .exit_failure
+        jz .invalid_base
         cmp rax, 0x1
-        je .exit_failure
+        je .invalid_base
 
         mov r8, rax
         xor rax, rax
+        mov rdx, 0x1
 
         .through_whitespaces:
                 cmp byte [rdi], 0x9
@@ -82,10 +88,20 @@ ft_atoi_base:
                 pop rbp
                 ret
 
-        .exit_failure:
+        .invalid_input:
                 mov rdi, 1
-                lea rsi, [error_msg]
-                mov rdx, error_msg_len
+                lea rsi, [error_input_msg]
+                mov rdx, error_input_msg_len
+                mov rax, 1
+                syscall
+
+                xor rax, rax
+                jmp .exit
+
+        .invalid_base:
+                mov rdi, 1
+                lea rsi, [error_base_msg]
+                mov rdx, error_base_msg_len
                 mov rax, 1
                 syscall
 

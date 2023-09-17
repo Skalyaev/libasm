@@ -13,6 +13,11 @@ ft_list_push_front:
         push rdi
         push rsi
 
+        test rdi, rdi
+        jz .exit
+        test rsi, rsi
+        jz .exit
+
         mov rdi, 0x10
         call malloc
         test rax, rax

@@ -19,7 +19,7 @@ section .data
         goodbye db NL, '[ LIBASM TESTER ] Goodbye! See you for bonuses!', NL, 0
         goodbye_len equ $ - goodbye
         perror_msg db '[ LIBASM TESTER ] Error', 0
-        null_test_msg db NL, 'Testing giving NULL as argument', NL, 0
+        null_test_msg db NL, 'Testing giving NULL as argument...', NL, 0
         null_test_msg_len equ $ - null_test_msg
 
 section .text

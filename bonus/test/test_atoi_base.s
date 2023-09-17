@@ -19,6 +19,15 @@ test_atoi_base:
         WRITE level1, level1_len
         RET_TEST
 
+        WRITE null_test_msg, null_test_msg_len
+        RET_TEST
+
+        lea rdi, 0x0
+        lea rsi, 0x0
+        call ft_atoi_base
+        PRINTF format_atoi_base, rax
+        RET_TEST
+
         .loop:
                 WRITE level1_input1, level1_input1_len
                 RET_TEST

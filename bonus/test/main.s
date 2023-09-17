@@ -28,6 +28,8 @@ section .data
         goodbye_len equ $ - goodbye
         perror_msg db "[ LIBASM BONUS TESTER ] Error", 0
         just_nl db NL, 0
+        null_test_msg db NL, 'Testing giving NULL as argument...', NL, 0
+        null_test_msg_len equ $ - null_test_msg
 
 section .text
         global _start
@@ -45,17 +47,17 @@ _start:
         test rax, rax
         js .exit_failure
 
-        call test_atoi_base
-        test rax, rax
-        js .exit_failure
+        ;call test_atoi_base
+        ;test rax, rax
+        ;js .exit_failure
 
         ;call test_list_push_front
         ;test rax, rax
         ;js .exit_failure
 
-        ;call test_list_size
-        ;test rax, rax
-        ;js .exit_failure
+        call test_list_size
+        test rax, rax
+        js .exit_failure
 
         ;call test_list_sort
         ;test rax, rax
