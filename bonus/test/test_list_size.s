@@ -19,9 +19,9 @@ test_list_size:
         RET_TEST
 
         xor r12, r12
-        xor r13, r13
 
         .loop:
+                xor r13, r13
                 cmp r12, 0x29
                 ja .print_size
 

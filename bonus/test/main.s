@@ -47,25 +47,25 @@ _start:
         test rax, rax
         js .exit_failure
 
-        ;call test_atoi_base
-        ;test rax, rax
-        ;js .exit_failure
+        call test_atoi_base
+        test rax, rax
+        js .exit_failure
 
-        ;call test_list_push_front
-        ;test rax, rax
-        ;js .exit_failure
+        call test_list_push_front
+        test rax, rax
+        js .exit_failure
 
         call test_list_size
         test rax, rax
         js .exit_failure
 
-        ;call test_list_sort
-        ;test rax, rax
-        ;js .exit_failure
+        call test_list_sort
+        test rax, rax
+        js .exit_failure
 
-        ;call test_list_remove_if
-        ;test rax, rax
-        ;js .exit_failure
+        call test_list_remove_if
+        test rax, rax
+        js .exit_failure
 
         .exit:
                 WRITE goodbye, goodbye_len

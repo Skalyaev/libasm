@@ -172,7 +172,6 @@ ft_cmp:
 
         .new_loop:
                 inc rdi
-                inc rsi
                 jmp .loop
 
         .exit:

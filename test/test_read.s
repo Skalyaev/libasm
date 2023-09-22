@@ -35,6 +35,7 @@ test_read:
         RET_TEST
         mov rdi, ft_read_errno
         call perror
+        TCFLUSH
 
         mov rdi, 0x0
         mov rsi, 0x0
@@ -44,6 +45,7 @@ test_read:
         RET_TEST
         mov rdi, read_errno
         call perror
+        TCFLUSH
 
         .loop:
                 WRITE level5_input1, level5_input1_len
@@ -72,6 +74,7 @@ test_read:
                 mov rdx, rbx
                 call ft_read
                 mov rbx, rax
+                TCFLUSH
 
                 PRINTF format_ft_read, rbx
                 RET_TEST
@@ -97,8 +100,9 @@ test_read:
                 mov rdx, rbx
                 call read
                 mov rbx, rax
+                TCFLUSH
 
-                PRINTF format_read, rax
+                PRINTF format_read, rbx
                 RET_TEST
 
                 PRINTF format_read_buffer, buffer3
