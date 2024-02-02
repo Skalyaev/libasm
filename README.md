@@ -6,10 +6,9 @@
 *In contrast, most high-level programming languages are generally portable across multiple architectures but require interpreting or compiling.*
 *Assembly language may also be called symbolic machine code.*
 
-## Objectives
-Recoding some of the standard C library functions in x86-64 assembly language.
-
 ## Table of contents
+> *This is about coding a few basic functions in assembly language.*
+
 - [x] strlen
 - [x] strcmp
 - [x] strcpy
