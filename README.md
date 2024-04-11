@@ -1,22 +1,19 @@
-# Libasm
-> *The aim of this project is to get familiar with assembly language.*
+# <p align="center">libasm</p>
+> *L'objectif de ce projet est de se familiariser avec le langage d'assemblage. Vous devrez écrire quelques fonctions en langage d'assemblage.*
+>
+> *Un langage d'assemblage est un langage de programmation bas niveau, dans lequel il existe une correspondance très forte entre le langage et les instructions de code machine de l'architecture.*
+>
+> *Chaque langage d'assemblage est spécifique à une architecture informatique particulière. En contraste, la plupart des langages de programmation de haut niveau sont généralement portables sur plusieurs architectures mais nécessitent une interprétation ou une compilation.*
 
-*An assembly (or assembler) language, often abbreviated asm, is a low-level programming language for a computer, or other programmable device, in which there is a very strong (but often not one-to-one) correspondence between the language and the architecture’s machine code instructions.*
-*Each assembly language is specific to a particular computer architecture.*
-*In contrast, most high-level programming languages are generally portable across multiple architectures but require interpreting or compiling.*
-*Assembly language may also be called symbolic machine code.*
-
-## Table of contents
-> *This is about coding a few basic functions in assembly language.*
-
-- [x] strlen
-- [x] strcmp
-- [x] strcpy
-- [x] strdup
-- [x] read
-- [x] write
-- [x] atoi_base
-- [x] list_size
-- [x] list_sort
-- [x] list_push_front
-- [x] list_remove_if
+## Checklist
+- [x] **`strlen`** Calculer la longueur d'une chaîne de caractères
+- [x] **`strcmp`** Comparer deux chaînes de caractères
+- [x] **`strcpy`** Copier une chaîne de caractères
+- [x] **`strdup`** Dupliquer une chaîne de caractères
+- [x] **`read`** Lire depuis un descripteur de fichier
+- [x] **`write`** Écrire sur un descripteur de fichier
+- [x] **`atoi_base`** Convertir un nombre de base donnée en base décimal
+- [x] **`list_size`** Calculer la taille d'une liste chaînée
+- [x] **`list_sort`** Trier une liste chaînée
+- [x] **`list_push_front`** Ajouter un élément au début d'une liste chaînée
+- [x] **`list_remove_if`** Supprimer un élément d'une liste chaînée
