@@ -24,11 +24,11 @@ section .bss
 section .data
         welcome db "[ LIBASM BONUS TESTER ]", NL, "no input + CTRL-d => next level", NL, 0
         welcome_len equ $ - welcome
-        goodbye db NL, "[ LIBASM BONUS TESTER ] Goodbye! What an outstanding project isn't it ? :3", NL, 0
+        goodbye db NL, "[ LIBASM BONUS TESTER ] Goodbye! What an outstanding project isn"t it ? :3", NL, 0
         goodbye_len equ $ - goodbye
         perror_msg db "[ LIBASM BONUS TESTER ] Error", 0
         just_nl db NL, 0
-        null_test_msg db NL, 'Testing giving NULL as argument...', NL, 0
+        null_test_msg db NL, "Testing giving NULL as argument...", NL, 0
         null_test_msg_len equ $ - null_test_msg
 
 section .text

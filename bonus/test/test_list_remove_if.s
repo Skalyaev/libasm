@@ -1,15 +1,15 @@
 section .data
-        level5 db NL, 'Level 5 - list_remove_if(<list_begin>, <cmp_ref>, <ft_cmp>, <fr_free>): Remove an <element> from the list if ft_cmp(<element>, <cmp_ref>) returns 0', NL, 'No input + ENTER => launch function with the current list', NL, 0
+        level5 db NL, "Level 5 - list_remove_if(<list_begin>, <cmp_ref>, <ft_cmp>, <fr_free>): Remove an <element> from the list if ft_cmp(<element>, <cmp_ref>) returns 0", NL, "No input + ENTER => launch function with the current list", NL, 0
         level5_len equ $ - level5
-        level5_input1 db '<new_data>: ', 0
+        level5_input1 db "<new_data>: ", 0
         level5_input1_len equ $ - level5_input1
 
-        level5_msg1 db 'List content:', NL, 0
+        level5_msg1 db "List content:", NL, 0
         level5_msg1_len equ $ - level5_msg1
 
-        format_list_remove_if db '%s', 0
+        format_list_remove_if db "%s", 0
 
-        cmp_ref db '42', 0
+        cmp_ref db "42", 0
 
 section .text
         global test_list_remove_if

@@ -1,18 +1,18 @@
 section .data
-        level4 db NL, 'Level 4 - write(<fd>, <buffer>, <count>): Write <count> character(s) from <buffer> into <fd>', NL, 0
+        level4 db NL, "Level 4 - write(<fd>, <buffer>, <count>): Write <count> character(s) from <buffer> into <fd>", NL, 0
         level4_len equ $ - level4
-        level4_input1 db '<fd>: ', 0
+        level4_input1 db "<fd>: ", 0
         level4_input1_len equ $ - level4_input1
-        level4_input2 db '<buffer>: ', 0
+        level4_input2 db "<buffer>: ", 0
         level4_input2_len equ $ - level4_input2
-        level4_input3 db '<count>: ', 0
+        level4_input3 db "<count>: ", 0
         level4_input3_len equ $ - level4_input3
 
-        format_write db '--> write: %d', NL, 0
-        format_ft_write db '--> ft_write: %d', NL, 0
+        format_write db "--> write: %d", NL, 0
+        format_ft_write db "--> ft_write: %d", NL, 0
 
-        write_errno db '--> write', 0
-        ft_write_errno db '--> ft_write', 0
+        write_errno db "--> write", 0
+        ft_write_errno db "--> ft_write", 0
 
 section .text
         global test_write

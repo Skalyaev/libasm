@@ -1,13 +1,13 @@
 section .data
-        level4 db NL, 'Level 4 - list_sort(<list_begin>, <ft_cmp>): Sort the elements of a list based on the <ft_cmp> function', NL, 'No input + ENTER => launch function with the current list', NL, 0
+        level4 db NL, "Level 4 - list_sort(<list_begin>, <ft_cmp>): Sort the elements of a list based on the <ft_cmp> function", NL, "No input + ENTER => launch function with the current list", NL, 0
         level4_len equ $ - level4
-        level4_input1 db '<new_data>: ', 0
+        level4_input1 db "<new_data>: ", 0
         level4_input1_len equ $ - level4_input1
 
-        level4_msg1 db 'List content:', NL, 0
+        level4_msg1 db "List content:", NL, 0
         level4_msg1_len equ $ - level4_msg1
 
-        format_list_sort db '%s', 0
+        format_list_sort db "%s", 0
 
 section .text
         global test_list_sort

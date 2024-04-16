@@ -1,18 +1,18 @@
 section .data
-        level5 db NL, 'Level 5 - read(<fd>, <buffer>, <count>): Read <count> character(s) from <fd>, save that into <buffer>', NL, 0
+        level5 db NL, "Level 5 - read(<fd>, <buffer>, <count>): Read <count> character(s) from <fd>, save that into <buffer>", NL, 0
         level5_len equ $ - level5
-        level5_input1 db '<fd>: ', 0
+        level5_input1 db "<fd>: ", 0
         level5_input1_len equ $ - level5_input1
-        level5_input2 db '<count>: ', 0
+        level5_input2 db "<count>: ", 0
         level5_input2_len equ $ - level5_input2
 
-        format_read db '--> read: %d', NL, 0
-        format_ft_read db '--> ft_read: %d', NL, 0
-        format_read_buffer db '--> read_buffer: %s', NL, 0
-        format_ft_read_buffer db '--> ft_read_buffer: %s', NL, 0
+        format_read db "--> read: %d", NL, 0
+        format_ft_read db "--> ft_read: %d", NL, 0
+        format_read_buffer db "--> read_buffer: %s", NL, 0
+        format_ft_read_buffer db "--> ft_read_buffer: %s", NL, 0
 
-        read_errno db '--> read', 0
-        ft_read_errno db '--> ft_read', 0
+        read_errno db "--> read", 0
+        ft_read_errno db "--> ft_read", 0
 
 section .text
         global test_read

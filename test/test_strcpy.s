@@ -1,13 +1,13 @@
 section .data
-        level2 db NL, 'Level 2 - strcpy(<dest>, <src>): Copy <src> into <dest>', NL, 0
+        level2 db NL, "Level 2 - strcpy(<dest>, <src>): Copy <src> into <dest>", NL, 0
         level2_len equ $ - level2
-        level2_input1 db '<dest>: ', 0
+        level2_input1 db "<dest>: ", 0
         level2_input1_len equ $ - level2_input1
-        level2_input2 db '<src>: ', 0
+        level2_input2 db "<src>: ", 0
         level2_input2_len equ $ - level2_input2
 
-        format_strcpy db '--> strcpy: %s', NL, 0
-        format_ft_strcpy db '--> ft_strcpy: %s', NL, 0
+        format_strcpy db "--> strcpy: %s", NL, 0
+        format_ft_strcpy db "--> ft_strcpy: %s", NL, 0
 
 section .text
         global test_strcpy

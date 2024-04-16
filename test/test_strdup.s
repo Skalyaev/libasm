@@ -1,11 +1,11 @@
 section .data
-        level6 db NL, 'Level 6 - strdup(<string>): Duplicate <string>', NL, 0
+        level6 db NL, "Level 6 - strdup(<string>): Duplicate <string>", NL, 0
         level6_len equ $ - level6
-        level6_input1 db '<string>: ', 0
+        level6_input1 db "<string>: ", 0
         level6_input1_len equ $ - level6_input1
 
-        format_strdup db '--> strdup: %s', NL, 0
-        format_ft_strdup db '--> ft_strdup: %s', NL, 0
+        format_strdup db "--> strdup: %s", NL, 0
+        format_ft_strdup db "--> ft_strdup: %s", NL, 0
 
 section .text
         global test_strdup

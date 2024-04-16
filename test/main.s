@@ -1,12 +1,12 @@
-%include 'test/macro.inc'
+%include "test/macro.inc"
 %define BUFFER_SIZE 16
 
-%include 'test/test_strlen.s'
-%include 'test/test_strcpy.s'
-%include 'test/test_strcmp.s'
-%include 'test/test_write.s'
-%include 'test/test_read.s'
-%include 'test/test_strdup.s'
+%include "test/test_strlen.s"
+%include "test/test_strcpy.s"
+%include "test/test_strcmp.s"
+%include "test/test_write.s"
+%include "test/test_read.s"
+%include "test/test_strdup.s"
 
 section .bss
         buffer1 resb BUFFER_SIZE
@@ -14,12 +14,12 @@ section .bss
         buffer3 resb BUFFER_SIZE
 
 section .data
-        welcome db '[ LIBASM TESTER ]', NL, 'no input + CTRL-d => next level', NL, 0
+        welcome db "[ LIBASM TESTER ]", NL, "no input + CTRL-d => next level", NL, 0
         welcome_len equ $ - welcome
-        goodbye db NL, '[ LIBASM TESTER ] Goodbye!', NL, 0
+        goodbye db NL, "[ LIBASM TESTER ] Goodbye!", NL, 0
         goodbye_len equ $ - goodbye
-        perror_msg db '[ LIBASM TESTER ] Error', 0
-        null_test_msg db NL, 'Testing giving NULL as argument...', NL, 0
+        perror_msg db "[ LIBASM TESTER ] Error", 0
+        null_test_msg db NL, "Testing giving NULL as argument...", NL, 0
         null_test_msg_len equ $ - null_test_msg
 
 section .text

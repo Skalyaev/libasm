@@ -1,11 +1,11 @@
 section .data
-        level1 db NL, 'Level 1 - strlen(<string>): Calculates the length of <string>', NL, 0
+        level1 db NL, "Level 1 - strlen(<string>): Calculates the length of <string>", NL, 0
         level1_len equ $ - level1
-        level1_input1 db '<string>: ', 0
+        level1_input1 db "<string>: ", 0
         level1_input1_len equ $ - level1_input1
 
-        format_strlen db '--> strlen: %d', NL, 0
-        format_ft_strlen db '--> ft_strlen: %d', NL, 0
+        format_strlen db "--> strlen: %d", NL, 0
+        format_ft_strlen db "--> ft_strlen: %d", NL, 0
 
 section .text
         global test_strlen

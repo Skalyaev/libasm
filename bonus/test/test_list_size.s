@@ -1,10 +1,10 @@
 section .data
-        level3 db NL, 'Level 3 - list_size(<list_begin>): Return the number of elements in the list', NL, 'No input + ENTER => launch function with the current list', NL, 0
+        level3 db NL, "Level 3 - list_size(<list_begin>): Return the number of elements in the list", NL, "No input + ENTER => launch function with the current list", NL, 0
         level3_len equ $ - level3
-        level3_input1 db '<new_data>: ', 0
+        level3_input1 db "<new_data>: ", 0
         level3_input1_len equ $ - level3_input1
 
-        format_list_size db '--> list_size: %d', NL, 0
+        format_list_size db "--> list_size: %d", NL, 0
 
 section .text
         global test_list_size

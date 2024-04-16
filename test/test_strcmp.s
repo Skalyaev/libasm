@@ -1,13 +1,13 @@
 section .data
-        level3 db NL, 'Level 3 - strcmp(<string1>, <string2>): Compare <string1> with <string2>', NL, 0
+        level3 db NL, "Level 3 - strcmp(<string1>, <string2>): Compare <string1> with <string2>", NL, 0
         level3_len equ $ - level3
-        level3_input1 db '<string1>: ', 0
+        level3_input1 db "<string1>: ", 0
         level3_input1_len equ $ - level3_input1
-        level3_input2 db '<string2>: ', 0
+        level3_input2 db "<string2>: ", 0
         level3_input2_len equ $ - level3_input2
 
-        format_strcmp db '--> strcmp: %d', NL, 0
-        format_ft_strcmp db '--> ft_strcmp: %d', NL, 0
+        format_strcmp db "--> strcmp: %d", NL, 0
+        format_ft_strcmp db "--> ft_strcmp: %d", NL, 0
 
 section .text
         global test_strcmp

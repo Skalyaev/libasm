@@ -1,12 +1,12 @@
 section .data
-        level1 db NL, 'Level 1 - atoi_base(<value>, <base>): Convert <value> from its <base> into an int', NL, 0
+        level1 db NL, "Level 1 - atoi_base(<value>, <base>): Convert <value> from its <base> into an int", NL, 0
         level1_len equ $ - level1
-        level1_input1 db '<value>: ', 0
+        level1_input1 db "<value>: ", 0
         level1_input1_len equ $ - level1_input1
-        level1_input2 db '<base>: ', 0
+        level1_input2 db "<base>: ", 0
         level1_input2_len equ $ - level1_input2
 
-        format_atoi_base db '--> atoi_base: %d', NL, 0
+        format_atoi_base db "--> atoi_base: %d", NL, 0
 
 section .text
         global test_atoi_base

@@ -1,14 +1,14 @@
 section .data
-        level2 db NL, 'Level 2 - list_push_front(<list_begin>, <new_data>): Add <new_data> to the beginning of the linked list', NL, 0
+        level2 db NL, "Level 2 - list_push_front(<list_begin>, <new_data>): Add <new_data> to the beginning of the linked list", NL, 0
         level2_len equ $ - level2
-        level2_input1 db '<new_data>: ', 0
+        level2_input1 db "<new_data>: ", 0
         level2_input1_len equ $ - level2_input1
 
-        level2_msg1 db 'List content:', NL, 0
+        level2_msg1 db "List content:", NL, 0
         level2_msg1_len equ $ - level2_msg1
 
 
-        format_list_push_front db '%s', 0
+        format_list_push_front db "%s", 0
 
 section .text
         global test_list_push_front
