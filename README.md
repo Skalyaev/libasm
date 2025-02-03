@@ -1,11 +1,13 @@
 # <p align="center">libasm</p>
-> *L'objectif de ce projet est de se familiariser avec le langage d'assemblage. Vous devrez écrire quelques fonctions en langage d'assemblage.*
+
+> _L'objectif de ce projet est de se familiariser avec le langage d'assemblage. Vous devrez écrire quelques fonctions en langage d'assemblage._
 >
-> *Un langage d'assemblage est un langage de programmation bas niveau, dans lequel il existe une correspondance très forte entre le langage et les instructions de code machine de l'architecture.*
+> _Un langage d'assemblage est un langage de programmation bas niveau, dans lequel il existe une correspondance très forte entre le langage et les instructions de code machine de l'architecture._
 >
-> *Chaque langage d'assemblage est spécifique à une architecture informatique particulière. En contraste, la plupart des langages de programmation de haut niveau sont généralement portables sur plusieurs architectures mais nécessitent une interprétation ou une compilation.*
+> _Chaque langage d'assemblage est spécifique à une architecture informatique particulière. En contraste, la plupart des langages de programmation de haut niveau sont généralement portables sur plusieurs architectures mais nécessitent une interprétation ou une compilation._
 
 ## Checklist
+
 - [x] **`strlen`** Calculer la longueur d'une chaîne de caractères
 - [x] **`strcmp`** Comparer deux chaînes de caractères
 - [x] **`strcpy`** Copier une chaîne de caractères
@@ -17,5 +19,4 @@
 - [x] **`list_sort`** Trier une liste chaînée
 - [x] **`list_push_front`** Ajouter un élément au début d'une liste chaînée
 - [x] **`list_remove_if`** Supprimer un élément d'une liste chaînée
->**Extra**: Les testeurs sont aussi en assembleur
-
+  > **Extra**: Les testeurs sont aussi en assembleur
